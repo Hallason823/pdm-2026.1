@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "expo-01",
-    "slug": "expo-01",
+    "name": "expo-02",
+    "slug": "expo-02",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "expo01",
+    "scheme": "expo02",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -47,14 +47,14 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "53ee657d-197d-4817-ad01-69a5311769b5"
+        "projectId": "9b30d9a1-edd8-44bc-894b-117bba23cf29"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/53ee657d-197d-4817-ad01-69a5311769b5"
+      "url": "https://u.expo.dev/9b30d9a1-edd8-44bc-894b-117bba23cf29"
     }
   }
 }
