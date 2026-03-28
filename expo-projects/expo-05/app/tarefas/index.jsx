@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { adicionarTarefa, getTarefas } from "@/back4app";
+import { getTarefas, adicionarTarefa, atualizarTarefa, deletarTarefa  } from "@/back4app";
 
 export default function TarefasPage() {
   const queryClient = useQueryClient();
@@ -23,6 +23,19 @@ export default function TarefasPage() {
       queryClient.invalidateQueries({ queryKey: ["tarefas"] });
     },
   });
+  const updateMutation = useMutation({
+  mutationFn: ({ id, dados }) => atualizarTarefa(id, dados),
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["tarefas"] });
+  },
+  });
+  const deleteMutation = useMutation({
+  mutationFn: deletarTarefa,
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["tarefas"] });
+  },
+  });
+
   const [descricao, setDescricao] = useState("");
 
   async function handleAdicionarTarefaPress() {
@@ -53,12 +66,27 @@ export default function TarefasPage() {
       <View style={styles.hr} />
       <View style={styles.tasksContainer}>
         {data?.map((t) => (
+          <View key={t.objectId}>
           <Text
             key={t.objectId}
             style={t.concluida && styles.strikethroughText}
           >
             {t.descricao}
           </Text>
+          <Switch
+            value={t.concluida}
+            onValueChange={(valor) =>
+              updateMutation.mutate({
+                id: t.objectId,
+                dados: { concluida: valor },
+              })
+            }
+          />
+          <Button
+            title="X"
+            onPress={() => deleteMutation.mutate(t.objectId)}
+          />
+          </View>
         ))}
       </View>
     </View>
