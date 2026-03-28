@@ -23,3 +23,21 @@ export async function adicionarTarefa(novaTarefa) {
   });
   return response.data;
 }
+
+export async function atualizarTarefa(id, dadosAtualizados) {
+  const response = await axios.put(`${urlBase}${id}`, dadosAtualizados,
+    {
+      headers: headersJson
+    }
+  );
+  return response.data;
+}
+
+export async function deletarTarefa(id) {
+  const response = await axios.delete(`${urlBase}${id}`,
+    {
+      headers: hearders
+    }
+  );
+  return response.data;
+}
