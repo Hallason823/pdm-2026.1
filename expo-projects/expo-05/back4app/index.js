@@ -36,7 +36,7 @@ export async function atualizarTarefa(id, dadosAtualizados) {
 export async function deletarTarefa(id) {
   const response = await axios.delete(`${urlBase}/${id}`,
     {
-      headers: hearders
+      headers: headers
     }
   );
   return response.data;
