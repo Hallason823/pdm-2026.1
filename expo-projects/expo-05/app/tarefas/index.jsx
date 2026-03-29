@@ -69,7 +69,7 @@ export default function TarefasPage() {
         {data?.map((t) => (
           <View key={t.objectId} style={{ flexDirection: "row", alignItems: "center", margin: 10 }}>
           <Text
-            style={t.concluida && styles.strikethroughText}
+              style={[styles.taskText, t.concluida && styles.strikethroughText]}
           >
             {t.descricao}
           </Text>
@@ -85,6 +85,7 @@ export default function TarefasPage() {
           <Button
             title="X"
             onPress={() => deleteMutation.mutate(t.objectId)}
+            style={{ marginHorizontal: 12 }}
           />
           </View>
         ))}
@@ -113,6 +114,9 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     width: "95%",
     marginVertical: 10,
+  },
+  taskText: {
+  marginHorizontal: 12,
   },
   strikethroughText: {
     textDecorationLine: "line-through", // Key property for strikethrough
