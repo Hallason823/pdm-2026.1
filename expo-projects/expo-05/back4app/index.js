@@ -25,7 +25,7 @@ export async function adicionarTarefa(novaTarefa) {
 }
 
 export async function atualizarTarefa(id, dadosAtualizados) {
-  const response = await axios.put(`${urlBase}${id}`, dadosAtualizados,
+  const response = await axios.put(`${urlBase}/${id}`, dadosAtualizados,
     {
       headers: headersJson
     }
@@ -34,7 +34,7 @@ export async function atualizarTarefa(id, dadosAtualizados) {
 }
 
 export async function deletarTarefa(id) {
-  const response = await axios.delete(`${urlBase}${id}`,
+  const response = await axios.delete(`${urlBase}/${id}`,
     {
       headers: hearders
     }

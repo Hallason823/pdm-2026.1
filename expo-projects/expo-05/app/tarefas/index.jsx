@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  Switch,
 } from "react-native";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getTarefas, adicionarTarefa, atualizarTarefa, deletarTarefa  } from "@/back4app";
@@ -45,7 +46,7 @@ export default function TarefasPage() {
       ]);
       return;
     }
-    mutation.mutate({ descricao });
+    mutation.mutate({ descricao, concluida: false });
     setDescricao("");
   }
 
@@ -66,9 +67,8 @@ export default function TarefasPage() {
       <View style={styles.hr} />
       <View style={styles.tasksContainer}>
         {data?.map((t) => (
-          <View key={t.objectId}>
+          <View key={t.objectId} style={{ flexDirection: "row", alignItems: "center", margin: 10 }}>
           <Text
-            key={t.objectId}
             style={t.concluida && styles.strikethroughText}
           >
             {t.descricao}
