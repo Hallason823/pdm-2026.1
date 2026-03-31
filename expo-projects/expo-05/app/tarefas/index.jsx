@@ -8,11 +8,14 @@ import {
   TextInput,
   View,
   Switch,
+  TouchableOpacity,
 } from "react-native";
+import { useRouter } from "expo-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getTarefas, adicionarTarefa, atualizarTarefa, deletarTarefa  } from "@/back4app";
 
 export default function TarefasPage() {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { data, isFetching } = useQuery({
     queryKey: ["tarefas"],
@@ -68,25 +71,23 @@ export default function TarefasPage() {
       <View style={styles.tasksContainer}>
         {data?.map((t) => (
           <View key={t.objectId} style={{ flexDirection: "row", alignItems: "center", margin: 10 }}>
-          <Text
-              style={[styles.taskText, t.concluida && styles.strikethroughText]}
-          >
-            {t.descricao}
-          </Text>
-          <Switch
-            value={t.concluida}
-            onValueChange={(valor) =>
-              updateMutation.mutate({
-                id: t.objectId,
-                dados: { concluida: valor },
-              })
-            }
-          />
-          <Button
-            title="X"
-            onPress={() => deleteMutation.mutate(t.objectId)}
-            style={{ marginHorizontal: 12 }}
-          />
+            <TouchableOpacity 
+              style={{ flex: 1 }}
+              onPress={() => router.push(`/tarefas/${t.objectId}`)}
+            >
+              <Text style={[styles.taskText, t.concluida && styles.strikethroughText]}>
+                {t.descricao}
+              </Text>
+            </TouchableOpacity>
+            <Switch
+              value={t.concluida}
+              onValueChange={(valor) =>
+                updateMutation.mutate({
+                  id: t.objectId,
+                  dados: { concluida: valor },
+                })
+              }
+            />
           </View>
         ))}
       </View>

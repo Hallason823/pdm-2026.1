@@ -17,6 +17,13 @@ export async function getTarefas() {
   return response.data.results;
 }
 
+export async function getTarefa(id) {
+  const response = await axios.get(`${urlBase}/${id}`, {
+    headers: headers,
+  });
+  return response.data;
+}
+
 export async function adicionarTarefa(novaTarefa) {
   const response = await axios.post(urlBase, novaTarefa, {
     headers: headersJson,
