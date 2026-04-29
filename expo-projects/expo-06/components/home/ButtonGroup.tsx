@@ -1,5 +1,5 @@
 import { Button } from '@ant-design/react-native';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { ComponentSection } from '../shared/ComponentSection';
 import { homeStyles } from './styles';
 
@@ -8,9 +8,15 @@ interface Props {
 }
 
 export function ButtonGroup({ onSubmit }: Props) {
+  const router = useRouter();
+
   const handleSubmit = () => {
     onSubmit?.();
     alert('Form submitted!');
+  };
+
+  const goToFeatures = () => {
+    router.push('/features');
   };
 
   return (
@@ -18,9 +24,9 @@ export function ButtonGroup({ onSubmit }: Props) {
       <Button type="primary" onPress={handleSubmit} style={homeStyles.button}>
         Submit
       </Button>
-      <Link href="/features" asChild>
-        <Button style={homeStyles.button}>Go to Features</Button>
-      </Link>
+      <Button onPress={goToFeatures} style={homeStyles.button}>
+        Go to Features
+      </Button>
     </ComponentSection>
   );
 }

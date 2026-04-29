@@ -1,7 +1,22 @@
 import { View } from 'react-native';
-import { Tag, Badge } from '@ant-design/react-native';
+import { Text, Badge } from '@ant-design/react-native';
 import { ComponentSection } from '../shared/ComponentSection';
 import { featuresStyles } from './styles';
+
+const Tag = ({ children }: { children: string }) => (
+  <View
+    style={{
+      backgroundColor: '#1890ff',
+      paddingHorizontal: 12,
+      paddingVertical: 6,
+      borderRadius: 4,
+      marginRight: 8,
+      marginBottom: 8,
+    }}
+  >
+    <Text style={{ color: 'white', fontSize: 12 }}>{children}</Text>
+  </View>
+);
 
 export function TagComponent() {
   const tags = ['JavaScript', 'Mobile', 'React', 'TypeScript', 'UI Kit', 'Design System'];
@@ -10,9 +25,7 @@ export function TagComponent() {
     <ComponentSection title="Tags & Badges">
       <View style={featuresStyles.tagContainer}>
         {tags.map((tag) => (
-          <Tag key={tag} selected={false} style={{ marginBottom: 8 }}>
-            {tag}
-          </Tag>
+          <Tag key={tag}>{tag}</Tag>
         ))}
       </View>
 

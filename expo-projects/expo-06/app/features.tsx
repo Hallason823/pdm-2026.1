@@ -1,5 +1,4 @@
-import { ScrollView } from 'react-native';
-import { Space } from '@ant-design/react-native';
+import { ScrollView, View } from 'react-native';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { CardComponent } from '@/components/features/CardComponent';
 import { ListComponent } from '@/components/features/ListComponent';
@@ -11,14 +10,14 @@ import { featuresStyles } from '@/components/features/styles';
 export default function FeaturesScreen() {
   return (
     <ScrollView style={featuresStyles.container} contentContainerStyle={featuresStyles.content}>
-      <Space direction="vertical" size="lg" style={featuresStyles.section}>
+      <View style={featuresStyles.section}>
         <SectionHeader title="Data Display" subtitle="Cards, lists, badges, and more" />
         <CardComponent />
         <ListComponent />
         <TagComponent />
         <DividerComponent />
         <BackButton />
-      </Space>
+      </View>
     </ScrollView>
   );
 }
